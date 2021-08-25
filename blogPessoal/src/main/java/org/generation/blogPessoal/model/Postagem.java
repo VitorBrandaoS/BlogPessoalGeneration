@@ -25,11 +25,13 @@ public class Postagem {
 	@Size(min = 5, max = 100)
 	private String titulo;
 	
+	@NotBlank
+	private String texto;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data = new java.sql.Date(System.currentTimeMillis());
 
-	@NotBlank
-	private String texto;
+	
 		
 	
 	public String getTexto() {
