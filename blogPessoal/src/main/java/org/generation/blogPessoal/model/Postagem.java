@@ -21,7 +21,8 @@ public class Postagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	
 	@NotBlank
 	@Size(min = 5, max = 100)
 	private String titulo;
@@ -35,7 +36,7 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-
+	
 	public String getTexto() {
 		return texto;
 	}
