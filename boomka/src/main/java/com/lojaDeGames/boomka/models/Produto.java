@@ -1,14 +1,13 @@
 package com.lojaDeGames.boomka.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -21,13 +20,21 @@ public class Produto {
 	
 	@NotBlank
 	private String nome;
-	@NotNull
+
 	private Long quant = 0L;
+
 	@NotNull
-	private float preco = 0;
-	
+	private float precoDeFabrica = 0;
+	@NotNull
+	private float valor = 0;
+
 	@ManyToOne
+	@JsonIgnoreProperties({"produto"})
 	private Categoria categoria;
+
+	@ManyToMany
+	@JsonIgnoreProperties({"listaPedido"})
+	private List<Pedido> listaPedido = new ArrayList<>();
 
 	public Long getCodigo() {
 		return codigo;
@@ -53,12 +60,12 @@ public class Produto {
 		this.quant = quant;
 	}
 
-	public float getPreco() {
-		return preco;
+	public float getPrecoDeFabrica() {
+		return precoDeFabrica;
 	}
 
-	public void setPreco(float preco) {
-		this.preco = preco;
+	public void setPrecoDeFabrica(float precoDeFabrica) {
+		this.precoDeFabrica = precoDeFabrica;
 	}
 
 	public Categoria getCategoria() {
@@ -68,7 +75,20 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
-	
+
+	public List<Pedido> getListaPedido() {
+		return listaPedido;
+	}
+
+	public void setListaPedido(List<Pedido> listaPedido) {
+		this.listaPedido = listaPedido;
+	}
+
+	public float getValor() {
+		return valor;
+	}
+
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
 }

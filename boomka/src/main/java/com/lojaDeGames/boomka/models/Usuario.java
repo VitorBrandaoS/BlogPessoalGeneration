@@ -1,13 +1,10 @@
 package com.lojaDeGames.boomka.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
@@ -24,8 +21,10 @@ public class Usuario {
 	@NotBlank
 	@Size(min = 5, max = 100)
 	private String senha;
-	
-	
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	private List<Pedido> listaPedidoUsuario;
+
 	public Long getId() {
 		return id;
 	}
@@ -50,7 +49,10 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	
+	public List<Pedido> getListaPedidoUsuario() {
+		return listaPedidoUsuario;
+	}
+	public void setListaPedidoUsuario(List<Pedido> listaPedidoUsuario) {
+		this.listaPedidoUsuario = listaPedidoUsuario;
+	}
 }

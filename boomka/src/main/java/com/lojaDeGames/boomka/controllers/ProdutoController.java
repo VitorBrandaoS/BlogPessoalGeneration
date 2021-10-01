@@ -1,6 +1,7 @@
 package com.lojaDeGames.boomka.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -50,7 +51,11 @@ public class ProdutoController {
 	
 	@PostMapping
 	public ResponseEntity<Produto> adicionarProduto(@Valid @RequestBody Produto post){
-		return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(post));
+		Optional<Produto> verifica = produtoRepository.findByCodigo(post.getCodigo());
+		if (verifica.isPresent()){
+			return ResponseEntity.badRequest().build();
+		}
+			return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(post));
 	}
 	
 	@PutMapping

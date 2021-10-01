@@ -1,5 +1,7 @@
 package com.lojaDeGames.boomka.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class Categoria {
 	private String descCategoria;
 	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"categoria", "listaPedido"})
 	private List<Produto> produto = new ArrayList<>();
 
 	public Long getId() {
@@ -58,7 +61,5 @@ public class Categoria {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
-	
-	
-	
+
 }

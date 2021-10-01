@@ -42,8 +42,14 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario){
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(usuarioService.CadastrarUsuario(usuario));
+	public ResponseEntity<Object> post(@RequestBody Usuario usuario){
+		Optional<Object> objectOptional = usuarioService.cadastrarUsuario(usuario);
+
+		if (objectOptional.isEmpty()){
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}else {
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(objectOptional.get());
+		}
 	}
 }

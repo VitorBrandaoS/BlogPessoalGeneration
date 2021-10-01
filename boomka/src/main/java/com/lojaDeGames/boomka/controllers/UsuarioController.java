@@ -45,7 +45,7 @@ public class UsuarioController {
 
 	}
 
-	@PostMapping("/salvar")
+	@PostMapping("/cadastrar")
 	public ResponseEntity<Object> salvar(@Valid @RequestBody Usuario novoUsuario) {
 		Optional<Object> objetoOptional = loginService.cadastrarUsuario(novoUsuario);
 		
@@ -56,7 +56,7 @@ public class UsuarioController {
 		}
 	}
 	
-	@PutMapping("/credenciais")
+	@PostMapping("/logar")
 	public ResponseEntity<Object> credenciais(@Valid @RequestBody Login usuarioParaAutenticar){
 		Optional<?> objetoOptional = loginService.pegarCredenciais(usuarioParaAutenticar);
 		
