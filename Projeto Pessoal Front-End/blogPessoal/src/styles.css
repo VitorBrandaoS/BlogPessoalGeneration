@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+    scroll-behavior: smooth;
+}
+
+.fs-54{
+    font-size: 54pt;
+}
+
+.fs-18{
+    font-size: 18pt;
+}
+
+.extreme-bars {
+    background-color: #0f4c5c;
+}
+
+.btn-orange {
+    background-color: #fca311;
+}
+

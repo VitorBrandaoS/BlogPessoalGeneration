@@ -1,0 +1,41 @@
+#img-bg {
+    background-image: url("../../assets/img/xPOZq9.jpg");
+    min-height: 935px;
+    transform: rotateY(180deg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+
+.bg-enter {
+    background-color: #0f4c5c;
+}
+
+.btn-color {
+    background-color: #fca311;
+    color: white;
+}
+
+.btn-color:hover {
+    background-color: #c8810f;
+}
+
+.btn-shadow {
+    box-shadow: 0px 5px 10px rgb(36, 36, 36);
+}
+
+.font-color {
+    color: aliceblue;
+}
+
+a {
+    color: #fca311;
+}
+
+input {
+    box-shadow: 0px 5px 10px rgb(36, 36, 36);
+}
+
+select {
+    box-shadow: 0px 5px 10px rgb(36, 36, 36);
+}

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light extreme-bars">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto d-flex align-items-center">
+            <li class="nav-item active">
+                <img src="{{foto}}" alt="Imagem perfil" width="50px" height="50px"
+                    class="foto-perfil rounded-circle">
+            </li>
+            <li class="nav-item pl-3">
+                <p class="m-0 font-weight-bold text-white fs-16">Hellow, {{nome}}!</p>
+            </li>
+            <li class="nav-item pl-3">
+                <a href="">
+                    <p class="text-white fs-16 m-0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></p>
+                </a>
+            </li>            
+        </ul>
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <a (click)="sair()" class="m-0 font-weight-bold text-white fs-16">Exit<i class="fa fa-sign-out p-1" aria-hidden="true"></i></a>
+        </ul>
+    </div>
+</nav>
