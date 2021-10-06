@@ -1,0 +1,28 @@
+<div class="container">
+
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-center text-secundary">Delete Theme</h1>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h4 class="text-center text-secundary">You really want delete this theme? All posts associates at this one is delete together!</h4>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h5 class="text-center text-primary">Theme: {{tema.descricao}}</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            <button class="btn btn-danger mr-4" routerLink="/tema">No</button>
+            <button class="btn btn-success" (click)="apagar()">Yes!</button>
+        </div>
+    </div>
+
+</div>
