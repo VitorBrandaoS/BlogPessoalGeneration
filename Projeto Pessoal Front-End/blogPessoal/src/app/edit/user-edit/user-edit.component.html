@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-3 m-5">
+            <h1 class="text-center text-secondary">Update User</h1>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input [(ngModel)]="usuario.nome" class="form-control" type="text" name="name" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input [(ngModel)]="usuario.usuario" class="form-control" type="text" name="username" id="username" placeholder="Enter a username">
+                    </div>
+                    <div class="form-group">
+                        <label for="picture">Picture link</label>
+                        <input [(ngModel)]="usuario.foto"  class="form-control" type="text" name="picture" id="picture" placeholder="Enter your picture link">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input [(ngModel)]="usuario.senha"  class="form-control" type="password" name="password" id="password" placeholder="Enter a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPass">Confirm password</label>
+                        <input (input)="confirmSenha($event)" class="form-control" type="password" name="confirmPass" id="confirmPass" placeholder="Confirm your password">
+                    </div>
+                    <div class="form-group">
+                        <label for="userType">User type</label>
+                        <select (change)="tipoUser($event)" class="form-control" name="userType" id="userType">
+                            <option>Select user type</option>
+                            <option value="commun">Common</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-shadow mr-4 btn-color" (click)="update()">Update</button>
+                        <button type="submit" class="btn btn-shadow btn-danger" routerLink="/inicio">Cancel</button>                            
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

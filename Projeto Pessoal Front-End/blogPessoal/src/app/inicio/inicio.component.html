@@ -1,8 +1,8 @@
 <div class="container-fluid bg-inicio">
-    <div class="row d-flex align-items-center bg-img">        
+    <div class="row d-flex align-items-center bg-img">
         <div class="col-md-6">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-6 text-secondary">                
+                <div class="col-md-6 text-secondary">
                     <h1 class="fs-54">Welcome!</h1>
                     <h5 class="fs-18">Post yours arts here!</h5>
                 </div>
@@ -28,8 +28,9 @@
             <a class="nav-link active text-secondary font-weight-bold" id="nav-home-tab" data-toggle="tab"
                 href="#allPosts" role="tab" aria-controls="nav-allPosts" aria-selected="true">All Posts</a>
 
-            <a class="nav-link text-secondary font-weight-bold" id="nav-myPosts-tab" data-toggle="tab" href="#myPosts"
-                role="tab" aria-controls="nav-myPosts" aria-selected="false">My Posts</a>
+            <a (click)="findByIdUser()" class="nav-link text-secondary font-weight-bold" id="nav-myPosts-tab"
+                data-toggle="tab" href="#myPosts" role="tab" aria-controls="nav-myPosts" aria-selected="false">My
+                Posts</a>
 
             <a class="nav-link text-secondary font-weight-bold" id="nav-postsTheme-tab" data-toggle="tab"
                 href="#postsTheme" role="tab" aria-controls="nav-postsTheme" aria-selected="false">Posts by Theme</a>
@@ -38,15 +39,61 @@
 
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="allPosts" role="tabpanel" aria-labelledby="nav-allPosts-tab">
-            All Posts
+            <div class="d-flex flex-wrap justify-content-center mt-3">
+                <div class="card m-3" style="width: 18rem;" *ngFor="let item of listaPostagens">
+                    <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.titulo}}</h5>
+                        <p class="card-text">{{item.texto}}</p>
+                        <small class="text-muted">{{item.data | date: 'MM/dd/yyyy'}} at {{item.data | date:
+                            'HH:mm'}}</small>
+                        <br>
+                        <small class="text-muted">Theme: {{item.tema.descricao}}</small>
+                        <p class="card-text"><small class="text-muted">Posted by: {{item.usuario.nome}}</small></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane fade" id="myPosts" role="tabpanel" aria-labelledby="nav-myPosts-tab">
-            My Posts
+            <div class="d-flex flex-wrap justify-content-center mt-3">
+                <div class="card mt-1 mb-1 m-4" style="width: 18rem;" *ngFor="let item of usuario.postagem">
+                    <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.titulo}}</h5>
+                        <p class="card-text">{{item.texto}}</p>
+                        <small class="text-muted">{{item.data | date: 'MM/dd/yyyy'}} at {{item.data | date:
+                            'HH:mm'}}</small>
+                        <br>
+                        <small class="text-muted">Theme: {{item.tema.descricao}}</small>
+                        <br>
+                        <div class="text-center">
+                        <a [routerLink]="['/postagem-edit', item.id]" routerLinkActive="router-link-active"
+                            class="text-info mr-3" href="">Edit</a>
+                        <a [routerLink]="['/postagem-delete', item.id]" routerLinkActive="router-link-active"
+                            class="text-danger" href="">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane fade" id="postsTheme" role="tabpanel" aria-labelledby="nav-postsTheme-tab">
-            Posts by theme
+
+            <div class="d-flex flex-wrap justify-content-center mt-3" *ngFor="let tema of listaTemas">
+                <div class="card mt-1 mb-1 m-4" style="width: 18rem;" *ngFor="let item of tema.postagem">
+                    <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.titulo}}</h5>
+                        <p class="card-text">{{item.texto}}</p>
+                        <small class="text-muted">{{item.data | date: 'MM/dd/yyyy'}} at {{item.data | date:
+                            'HH:mm'}}</small>
+                        <br>
+                        <p class="card-text"><small class="text-muted">Posted by: {{item.usuario.nome}}</small></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -69,29 +116,32 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter the title">
+                    <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="title"
+                        placeholder="Enter the title">
                 </div>
 
 
 
                 <div class="form-group">
                     <label for="text">Text</label>
-                    <textarea class="form-control" name="text" id="text" rows="3"></textarea>
+                    <textarea [(ngModel)]="postagem.texto" class="form-control" name="text" id="text"
+                        rows="3"></textarea>
                 </div>
 
 
 
                 <div class="form-group">
-                    <label for="text">Choose a theme or <a routerLink="/tema" data-dismiss="modal">register a theme.</a></label>
-                   <select name="theme" id="theme" class="form-control">
-                    <option value="">Themes</option>
-                   </select>
+                    <label for="text">Choose a theme or <a routerLink="/tema" data-dismiss="modal">register a
+                            theme.</a></label>
+                    <select name="theme" id="theme" class="form-control" [(ngModel)]="idTema" (change)="findByIdTema()">
+                        <option *ngFor="let item of listaTemas" value="{{item.id}}">{{item.descricao}}</option>
+                    </select>
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success">Publish</button>
+                <button type="button" class="btn btn-success" (click)="publicar()" data-dismiss="modal">Publish</button>
             </div>
         </div>
     </div>

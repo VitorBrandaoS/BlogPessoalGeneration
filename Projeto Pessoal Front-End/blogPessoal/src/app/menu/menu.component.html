@@ -14,8 +14,8 @@
                 <p class="m-0 font-weight-bold text-white fs-16">Hellow, {{nome}}!</p>
             </li>
             <li class="nav-item pl-3">
-                <a href="">
-                    <p class="text-white fs-16 m-0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></p>
+                <a [routerLink]="['/user-edit', id]" routerLinkActive="router-link-active" >
+                    <p class="text-white fs-16 m-0"><i class="fa fa-cog text-warning" aria-hidden="true"></i></p>
                 </a>
             </li>            
         </ul>
