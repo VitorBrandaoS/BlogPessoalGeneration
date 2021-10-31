@@ -38,29 +38,57 @@
     </nav>
 
     <div class="tab-content" id="nav-tabContent">
+
         <div class="tab-pane fade show active" id="allPosts" role="tabpanel" aria-labelledby="nav-allPosts-tab">
+
+            <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="titulo" placeholder="Enter a post title to search." [(ngModel)]="tituloPost" (keyup)="findByTituloPostagem()">
+                    </div>
+                </div>
+            </div>
+
             <div class="d-flex flex-wrap justify-content-center mt-3">
-                <div class="card m-3" style="width: 18rem;" *ngFor="let item of listaPostagens">
-                    <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+                <div class="card m-3 card-style" style="width: 20rem;" *ngFor="let item of listaPostagens | orderBy : key : reverse">
+                    <img src="{{item.imagem}}" class="card-img-top img-card" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{item.titulo}}</h5>
+                        <hr>
                         <p class="card-text">{{item.texto}}</p>
                         <small class="text-muted">{{item.data | date: 'MM/dd/yyyy'}} at {{item.data | date:
                             'HH:mm'}}</small>
                         <br>
                         <small class="text-muted">Theme: {{item.tema.descricao}}</small>
-                        <p class="card-text"><small class="text-muted">Posted by: {{item.usuario.nome}}</small></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Posted by: {{item.usuario.nome}} ({{item.usuario.usuario}})</small>
+                           
+                            <img src="{{item.usuario.foto}}" class="foto-perfil rounded-circle"
+                                alt="">
+                            
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="tab-pane fade" id="myPosts" role="tabpanel" aria-labelledby="nav-myPosts-tab">
+
+            <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="titulo" placeholder="Enter a post title to search." [(ngModel)]="tituloPost" (keyup)="findByTituloPostagem()">
+                    </div>
+                </div>
+            </div>
+
             <div class="d-flex flex-wrap justify-content-center mt-3">
-                <div class="card mt-1 mb-1 m-4" style="width: 18rem;" *ngFor="let item of usuario.postagem">
-                    <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+                <div class="card m-3 card-style" style="width: 20rem;" *ngFor="let item of usuario.postagem | orderBy : key : reverse">
+                    <img src="{{item.imagem}}" class="card-img-top img-card" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{item.titulo}}</h5>
+                        <hr>
                         <p class="card-text">{{item.texto}}</p>
                         <small class="text-muted">{{item.data | date: 'MM/dd/yyyy'}} at {{item.data | date:
                             'HH:mm'}}</small>
@@ -68,10 +96,10 @@
                         <small class="text-muted">Theme: {{item.tema.descricao}}</small>
                         <br>
                         <div class="text-center">
-                        <a [routerLink]="['/postagem-edit', item.id]" routerLinkActive="router-link-active"
-                            class="text-info mr-3" href="">Edit</a>
-                        <a [routerLink]="['/postagem-delete', item.id]" routerLinkActive="router-link-active"
-                            class="text-danger" href="">Delete</a>
+                            <a [routerLink]="['/postagem-edit', item.id]" routerLinkActive="router-link-active"
+                                class="text-info mr-3" href="">Edit</a>
+                            <a [routerLink]="['/postagem-delete', item.id]" routerLinkActive="router-link-active"
+                                class="text-danger" href="">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -80,16 +108,26 @@
 
         <div class="tab-pane fade" id="postsTheme" role="tabpanel" aria-labelledby="nav-postsTheme-tab">
 
+            <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="titulo" placeholder="Enter a theme to search." [(ngModel)]="nomeTema" (keyup)="findByNomeTema()">
+                    </div>
+                </div>
+            </div>
+
             <div class="d-flex flex-wrap justify-content-center mt-3" *ngFor="let tema of listaTemas">
-                <div class="card mt-1 mb-1 m-4" style="width: 18rem;" *ngFor="let item of tema.postagem">
-                    <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+                <div class="card m-3 card-style" style="width: 20rem;" *ngFor="let item of tema.postagem | orderBy : key : reverse">
+                    <img src="{{item.imagem}}" class="card-img-top img-card" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{item.titulo}}</h5>
+                        <hr>
                         <p class="card-text">{{item.texto}}</p>
                         <small class="text-muted">{{item.data | date: 'MM/dd/yyyy'}} at {{item.data | date:
                             'HH:mm'}}</small>
                         <br>
                         <p class="card-text"><small class="text-muted">Posted by: {{item.usuario.nome}}</small></p>
+                        <small class="text-muted">Theme: {{tema.descricao}}</small>
                     </div>
                 </div>
             </div>
@@ -114,6 +152,13 @@
             </div>
 
             <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="title">Image URL</label>
+                    <input [(ngModel)]="postagem.imagem" type="text" class="form-control" id="title"
+                        placeholder="Enter the image URL">
+                </div>
+
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="title"
@@ -146,3 +191,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("imagemPost").src = "{{postagem.imagem}}"
+</script>

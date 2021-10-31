@@ -7,20 +7,32 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto d-flex align-items-center">
             <li class="nav-item active">
-                <img src="{{foto}}" alt="Imagem perfil" width="50px" height="50px"
-                    class="foto-perfil rounded-circle">
+                <img src="{{foto}}" alt="Imagem perfil" width="50px" height="50px" class="foto-perfil rounded-circle">
             </li>
             <li class="nav-item pl-3">
                 <p class="m-0 font-weight-bold text-white fs-16">Hellow, {{nome}}!</p>
             </li>
             <li class="nav-item pl-3">
-                <a [routerLink]="['/user-edit', id]" routerLinkActive="router-link-active" >
-                    <p class="text-white fs-16 m-0"><i class="fa fa-cog text-warning" aria-hidden="true"></i></p>
-                </a>
-            </li>            
+                <div class="dropdown">
+                    <a class=" dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
+                        <i class="fa fa-cog text-warning fs-16" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" [routerLink]="['/user-edit', id]"
+                            routerLinkActive="router-link-active">Edit Profile</a>
+                        <a class="dropdown-item" [routerLink]="['/user-edit', id]"
+                            routerLinkActive="router-link-active">Change Profile Photo</a>
+                        <a class="dropdown-item" [routerLink]="['/user-edit', id]"
+                            routerLinkActive="router-link-active">Change Username</a>
+                        <a class="dropdown-item" [routerLink]="['/user-edit', id]"
+                            routerLinkActive="router-link-active">Change Password</a>
+                    </div>
+                </div>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto d-flex align-items-center">
-            <a (click)="sair()" class="m-0 font-weight-bold text-white fs-16">Exit<i class="fa fa-sign-out p-1" aria-hidden="true"></i></a>
+            <a (click)="sair()" class="m-0 font-weight-bold text-white fs-16">Exit<i class="fa fa-sign-out p-1"
+                    aria-hidden="true"></i></a>
         </ul>
     </div>
 </nav>

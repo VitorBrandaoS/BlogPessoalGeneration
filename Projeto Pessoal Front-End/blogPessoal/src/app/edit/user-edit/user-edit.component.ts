@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/model/Usuario';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -19,7 +20,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -49,17 +51,17 @@ export class UserEditComponent implements OnInit {
     this.usuario.tipo = this.tipoUsuario
 
     if (this.usuario.senha != this.confirmarSenha) {
-      alert("Passwords are incorrect!")
+      this.alertas.showAlertDanger("Passwords are incorrect!")
     } else {
       this.authService.atualizar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
-        this.router.navigate(["/inicio"])
-        alert("User updated successfully! Please log in again...")
+        this.alertas.showAlertSuccess("User updated successfully! Please log in again...")
         environment.token = ""
         environment.nome = ""
         environment.foto = ""
         environment.id = 0
-        this.router.navigate(["/login"])
+        environment.tipo = ""
+        this.router.navigate(["/entrar"])
       })
     }
   }

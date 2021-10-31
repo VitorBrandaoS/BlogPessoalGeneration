@@ -14,10 +14,11 @@
 
     <div class="tab-pane fade show active" id="allPosts" role="tabpanel" aria-labelledby="nav-allPosts-tab">
         <div class="d-flex flex-wrap justify-content-center mt-3">
-            <div class="card m-3" style="width: 18rem;">
-                <img src="../../assets/img/PixelArt43.gif" class="card-img-top" alt="...">
+            <div class="card m-3 card-style" style="width: 20rem;">
+                <img src="{{postagem.imagem}}" class="card-img-top img-card" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{postagem.titulo}}</h5>
+                    <hr>
                     <p class="card-text">{{postagem.texto}}</p>
                     <small class="text-muted">{{postagem.data | date: 'MM/dd/yyyy'}} at {{postagem.data | date:
                         'HH:mm'}}</small>

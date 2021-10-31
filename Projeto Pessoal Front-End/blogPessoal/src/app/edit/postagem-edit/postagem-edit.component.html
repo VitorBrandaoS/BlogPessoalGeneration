@@ -10,6 +10,12 @@
     <div class="col-md-6">
 
         <div class="form-group">
+            <label for="title">Image URL</label>
+            <input [(ngModel)]="postagem.imagem" type="text" class="form-control" id="title"
+                placeholder="Enter the image URL">
+        </div>
+
+        <div class="form-group">
             <label for="title">Title</label>
             <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="title"
                 placeholder="Enter the title">

@@ -1,0 +1,14 @@
+.img-card {
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0px 5px 10px #0a323b;
+}
+
+.card-style {
+    box-shadow: 0px 5px 20px #0a323b;
+}
+
+.bg-post {
+    border-radius: 30px;
+    background-color: #0a323b;
+}

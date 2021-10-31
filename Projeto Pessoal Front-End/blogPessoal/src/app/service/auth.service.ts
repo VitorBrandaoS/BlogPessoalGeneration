@@ -26,12 +26,11 @@ export class AuthService {
   }
 
   atualizar(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>("https://blog-pessoal-deploy.herokuapp.com/usuarios", usuario)
+    return this.http.put<Usuario>("https://blog-pessoal-deploy.herokuapp.com/usuarios", usuario, this.token)
   }
 
   getByIdUser(id: number): Observable<Usuario>{
     return this.http.get<Usuario>(`https://blog-pessoal-deploy.herokuapp.com/usuarios/${id}`, this.token)
-
   }
 
   logado(){
