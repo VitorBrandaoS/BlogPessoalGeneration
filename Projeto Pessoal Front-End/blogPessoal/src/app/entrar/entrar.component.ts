@@ -13,6 +13,8 @@ import { AuthService } from '../service/auth.service';
 export class EntrarComponent implements OnInit {
 
   userLogin: UserLogin = new UserLogin()
+  altura: number
+  largura: number
 
   constructor(
     private auth: AuthService,
@@ -22,6 +24,10 @@ export class EntrarComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0)
+    this.altura = window.innerHeight
+    this.largura = window.innerWidth
+    console.log("Altura: "+this.altura)
+    console.log("Largura: "+this.largura)
   }
 
   entrar() {

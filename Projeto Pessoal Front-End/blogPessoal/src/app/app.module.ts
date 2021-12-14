@@ -20,6 +20,9 @@ import { UserEditComponent } from './edit/user-edit/user-edit.component';
 import { AlertasComponent } from './alertas/alertas.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { OrderModule } from 'ngx-order-pipe';
+import { UserEditFotoComponent } from './edit/user-edit-foto/user-edit-foto.component';
+import { UserEditUsernameComponent } from './edit/user-edit-username/user-edit-username.component';
+import { UserEditSenhaComponent } from './edit/user-edit-senha/user-edit-senha.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { OrderModule } from 'ngx-order-pipe';
     PostagemEditComponent,
     PostagemDeleteComponent,
     UserEditComponent,
-    AlertasComponent
+    AlertasComponent,
+    UserEditFotoComponent,
+    UserEditUsernameComponent,
+    UserEditSenhaComponent
   ],
   imports: [
     BrowserModule,

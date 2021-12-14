@@ -8,5 +8,9 @@ export class Postagem {
     public texto: string
     public data: Date
     public usuario: Usuario
+    public curtida: number
+    public amou: number
     public tema: Tema
+    public listaCurtidaUsuario: Usuario[]
+    public listaAmouUsuario: Usuario[]
 }

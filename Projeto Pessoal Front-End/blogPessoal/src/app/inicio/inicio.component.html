@@ -1,25 +1,54 @@
-<div class="container-fluid bg-inicio">
-    <div class="row d-flex align-items-center bg-img">
-        <div class="col-md-6">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6 text-secondary">
+<div class="container-fluid bg-inicio p-0">
+    <div class="d-flex flex-rowrap align-items-center p-0">
+        <div class="col-md-6 d-flex flex-column justify-content-center bg-img p-0">
+            <div class="d-flex justify-content-center">
+                <div class="text-secondary">
                     <h1 class="fs-54">Welcome!</h1>
-                    <h5 class="fs-18">Post yours arts here!</h5>
+                    <h5 class="fs-18">Post your arts here!</h5>
                 </div>
             </div>
 
-            <div class="row d-flex justify-content-center mt-3 mb-5">
-                <div class="col-md-6">
-                    <button class="btn btn-color mr-2" data-toggle="modal" data-target="#newPost">New Post</button>
+            <div class="d-flex justify-content-center mt-3 mb-5">
+                <div class="">
+                    <button class="btn btn-color mr-2 font-color" data-toggle="modal" data-target="#newPost">New Post</button>
                     <a class="btn btn-outline-secondary" href="#posts">See Post</a>
                 </div>
             </div>
-
         </div>
-        <div class="col-md-6 d-flex justify-content-center">
-            <img src="../../assets/img/Artist-pana-shadow.png" alt="" width="700px" height="700px">
+        <!---->
+        <div class="col-md-6 p-0">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://i.imgur.com/r9AUApE.jpg" class="d-block carousel-img"
+                            alt="Digital Art Carrousel">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.imgur.com/IfiOGmo.jpg" class="d-block carousel-img"
+                            alt="Digital Art Carrousel">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.imgur.com/CI7RYPA.jpg" class="d-block carousel-img"
+                            alt="Digital Art Carrousel">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
     </div>
+
 </div>
 
 <div class="container mb-5 mt-5" id="posts">
@@ -44,14 +73,23 @@
             <div class="row d-flex justify-content-center mt-5">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="titulo" placeholder="Enter a post title to search." [(ngModel)]="tituloPost" (keyup)="findByTituloPostagem()">
+                        <input type="text" class="form-control" id="titulo" placeholder="Enter a post title to search."
+                            [(ngModel)]="tituloPost" (keyup)="findByTituloPostagem()">
                     </div>
                 </div>
             </div>
 
             <div class="d-flex flex-wrap justify-content-center mt-3">
-                <div class="card m-3 card-style" style="width: 20rem;" *ngFor="let item of listaPostagens | orderBy : key : reverse">
+                <div class="card m-3 card-style hreact" style="width: 20rem;"
+                    *ngFor="let item of listaPostagens | orderBy : key : reverse">
+
                     <img src="{{item.imagem}}" class="card-img-top img-card" alt="...">
+                    <a class="btn-react" (click)="reactionFunction(item.id, 'like')"><img class="reaction like"
+                            src="../../assets/img/gostar.png" alt="Like"></a>
+                    <p class="conter-like p-react">{{item.curtida}}</p>
+                    <a class="btn-react" (click)="reactionFunction(item.id, 'love')"><img class="reaction love"
+                            src="../../assets/img/heart.png" alt="Love"></a>
+                    <p class="conter-love p-react">{{item.amou}}</p>
                     <div class="card-body">
                         <h5 class="card-title">{{item.titulo}}</h5>
                         <hr>
@@ -61,13 +99,18 @@
                         <br>
                         <small class="text-muted">Theme: {{item.tema.descricao}}</small>
                         <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">Posted by: {{item.usuario.nome}} ({{item.usuario.usuario}})</small>
-                           
-                            <img src="{{item.usuario.foto}}" class="foto-perfil rounded-circle"
-                                alt="">
-                            
-                        </div>
+                            <span class="d-flex flex-row align-items-center">
+                                <small class="text-muted">Posted by:</small>
+                                <p class="text-muted font-italic ml-2 m-0">{{item.usuario.usuario}}</p>
+                            </span>
+                            <span class="d-flex flex-row align-items-center">
+                                <!--<p class="font-italic mr-2 m-0">{{item.usuario.usuario}}</p>-->
 
+                                <img src="{{item.usuario.foto}}" class="foto-perfil rounded-circle" alt="">
+
+                            </span>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,13 +121,15 @@
             <div class="row d-flex justify-content-center mt-5">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="titulo" placeholder="Enter a post title to search." [(ngModel)]="tituloPost" (keyup)="findByTituloPostagem()">
+                        <input type="text" class="form-control" id="titulo" placeholder="Enter a post title to search."
+                            [(ngModel)]="tituloPost" (keyup)="findByTituloPostagemUser()">
                     </div>
                 </div>
             </div>
 
             <div class="d-flex flex-wrap justify-content-center mt-3">
-                <div class="card m-3 card-style" style="width: 20rem;" *ngFor="let item of usuario.postagem | orderBy : key : reverse">
+                <div class="card m-3 card-style" style="width: 20rem;"
+                    *ngFor="let item of usuario.postagem | orderBy : key : reverse">
                     <img src="{{item.imagem}}" class="card-img-top img-card" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{item.titulo}}</h5>
@@ -111,13 +156,15 @@
             <div class="row d-flex justify-content-center mt-5">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="titulo" placeholder="Enter a theme to search." [(ngModel)]="nomeTema" (keyup)="findByNomeTema()">
+                        <input type="text" class="form-control" id="titulo" placeholder="Enter a theme to search."
+                            [(ngModel)]="nomeTema" (keyup)="findByNomeTema()">
                     </div>
                 </div>
             </div>
 
             <div class="d-flex flex-wrap justify-content-center mt-3" *ngFor="let tema of listaTemas">
-                <div class="card m-3 card-style" style="width: 20rem;" *ngFor="let item of tema.postagem | orderBy : key : reverse">
+                <div class="card m-3 card-style" style="width: 20rem;"
+                    *ngFor="let item of tema.postagem | orderBy : key : reverse">
                     <img src="{{item.imagem}}" class="card-img-top img-card" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{item.titulo}}</h5>

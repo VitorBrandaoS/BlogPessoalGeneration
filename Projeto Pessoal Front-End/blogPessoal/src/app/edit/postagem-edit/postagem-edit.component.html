@@ -1,48 +1,74 @@
-<div class="container">
+<div class="container mb-5">
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1  class=" text-secondary text-center">Update Post</h1>
+    <div class="row mt-5 mb-5">
+        <div class="col-md-12 mt-5">
+            <h1 class=" text-secondary text-center">Update Post</h1>
         </div>
     </div>
 
-<div class="row d-flex justify-content-center">
-    <div class="col-md-6">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card m-3 card-style" style="width: 20rem;">
+                <img src="{{postagem.imagem}}" class="card-img-top img-card" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{postagem.titulo}}</h5>
+                    <hr>
+                    <p class="card-text">{{postagem.texto}}</p>
+                    <small class="text-muted">{{postagem.data | date: 'MM/dd/yyyy'}} at {{postagem.data | date:
+                        'HH:mm'}}</small>
+                    <br>
+                    <small class="text-muted">Theme: {{postagem.tema.descricao}}</small>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="d-flex flex-row align-items-center">
+                            <small class="text-muted">Posted by:</small>
+                            <p class="text-muted font-italic ml-2 m-0">{{postagem.usuario.usuario}}</p>
+                        </span>
+                        <span class="d-flex flex-row align-items-center">
+                            <!--<p class="font-italic mr-2 m-0">{{item.usuario.usuario}}</p>-->
 
-        <div class="form-group">
-            <label for="title">Image URL</label>
-            <input [(ngModel)]="postagem.imagem" type="text" class="form-control" id="title"
-                placeholder="Enter the image URL">
+                            <img src="{{postagem.usuario.foto}}" class="foto-perfil rounded-circle" alt="">
+
+                        </span>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="title"
-                placeholder="Enter the title">
-        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center">
 
+            <div class="form-group">
+                <label for="title">Image URL</label>
+                <input [(ngModel)]="postagem.imagem" type="text" class="form-control" id="title"
+                    placeholder="Enter the image URL">
+            </div>
 
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="title"
+                    placeholder="Enter the title">
+            </div>
 
-        <div class="form-group">
-            <label for="text">Text</label>
-            <textarea [(ngModel)]="postagem.texto" class="form-control" name="text" id="text"
-                rows="3"></textarea>
-        </div>
+            <div class="form-group">
+                <label for="text">Text</label>
+                <textarea [(ngModel)]="postagem.texto" class="form-control" name="text" id="text" rows="3"></textarea>
+            </div>
 
+            <div class="form-group">
+                <label for="text">Choose a theme or <a routerLink="/tema" data-dismiss="modal">register a
+                        theme.</a></label>
+                <select name="theme" id="theme" class="form-control" [(ngModel)]="idTema" (change)="findByIdTema()">
+                    <option *ngFor="let item of listaTemas" value="{{item.id}}">{{item.descricao}}</option>
+                </select>
+            </div>
 
-
-        <div class="form-group">
-            <label for="text">Choose a theme or <a routerLink="/tema" data-dismiss="modal">register a
-                    theme.</a></label>
-            <select name="theme" id="theme" class="form-control" [(ngModel)]="idTema" (change)="findByIdTema()">
-                <option *ngFor="let item of listaTemas" value="{{item.id}}">{{item.descricao}}</option>
-            </select>
-        </div>
-        <div class="d-flex justify-content-center mb-5">
-            <button class="btn btn-danger mr-4" routerLink="/inicio">Cancel</button>
-            <button class="btn btn-success" (click)="atualizar()">Update</button>
+            <div class="d-flex justify-content-center mb-5">
+                <button class="btn btn-danger mr-4" routerLink="/inicio">Cancel</button>
+                <button class="btn btn-success" (click)="atualizar()">Update</button>
+            </div>
+            
         </div>
     </div>
-</div>
-    
+
 </div>

@@ -19,6 +19,7 @@ export class PostagemEditComponent implements OnInit {
   tema: Tema = new Tema()
   listaTemas: Tema[]
   idTema: number
+  id: number
 
   constructor(
     private router: Router,
@@ -37,8 +38,8 @@ export class PostagemEditComponent implements OnInit {
       this.router.navigate(["/entrar"])
     }
 
-    let id = this.route.snapshot.params['id']
-    this.findByIdPostagem(id)
+    this.id = this.route.snapshot.params['id']
+    this.findByIdPostagem(this.id)
     this.findAllTemas()
   }
 
@@ -51,6 +52,7 @@ export class PostagemEditComponent implements OnInit {
   findByIdTema(){
     this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
       this.tema = resp
+      this.postagem.tema = resp
     })
   }
 
@@ -63,12 +65,14 @@ export class PostagemEditComponent implements OnInit {
   atualizar(){
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
-
-    this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
-      this.postagem = resp
-      this.alertas.showAlertSuccess("Post updated successfully!")
-      this.router.navigate(["/inicio"])
+    this.postagem.id = this.id
+    this.postagem.curtida = 0
+    this.postagem.amou = 0
+    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
+      this.postagem = resp 
     })
+    this.alertas.showAlertSuccess("Post updated successfully!")
+    this.router.navigate(["/inicio"])
   }
 
 }

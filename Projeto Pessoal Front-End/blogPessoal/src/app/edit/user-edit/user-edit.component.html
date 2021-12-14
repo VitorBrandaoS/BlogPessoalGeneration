@@ -1,42 +1,121 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mt-3 m-5">
-            <h1 class="text-center text-secondary">Update User</h1>
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-10">
+<div class="container bg-img">
+    <button type="submit" class="btn btn-shadow btn-info btn-return"
+                                            routerLink="/inicio">↺ Return</button>
+    <div class="d-flex mt-5 align-items-center "  style="height: {{altura}}px;">
+        
+        <div class="col-md-12 mt-3 m-5 d-flex justify-content-center align-items-center"> 
 
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input [(ngModel)]="usuario.nome" class="form-control" type="text" name="name" id="name" placeholder="Enter your name">
+            <div class="d-flex flex-row justify-content-center background-transparente">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="font-color bottom-color m-1" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fa fa-user p-1 "
+                                aria-hidden="true"></i> Change Name</a>
+                        <a class="font-color bottom-color m-1" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false"><i
+                                class="fa fa-picture-o pr-1" aria-hidden="true"></i> Change Profile Picture</a>
+                        <a class="font-color bottom-color m-1" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                            role="tab" aria-controls="v-pills-messages" aria-selected="false"><i
+                                class="fa fa-unlock-alt p-1 pr-2" aria-hidden="true"></i> Change Password</a>
                     </div>
-                    <div class="form-group">
-                        <label for="picture">Picture link</label>
-                        <input [(ngModel)]="usuario.foto"  class="form-control" type="text" name="picture" id="picture" placeholder="Enter your picture link">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input [(ngModel)]="usuario.senha"  class="form-control" type="password" name="password" id="password" placeholder="Enter a password">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPass">Confirm password</label>
-                        <input (input)="confirmSenha($event)" class="form-control" type="password" name="confirmPass" id="confirmPass" placeholder="Confirm your password">
-                    </div>
-                    <div class="form-group">
-                        <label for="userType">User type</label>
-                        <select (change)="tipoUser($event)" class="form-control" name="userType" id="userType">
-                            <option>Select user type</option>
-                            <option value="commun">Common</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-shadow mr-4 btn-color" (click)="update()">Update</button>
-                        <button type="submit" class="btn btn-shadow btn-danger" routerLink="/inicio">Cancel</button>                            
+                </div>
+                <div class="p-0 d-flex justify-content-center align-items-center" style="width: 350px;">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <!--Edit Profile-->
+                        <div class="tab-pane fade show active m-4" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+                            
+                                <div class="">
+                                    <div class="form-group">
+                                        <label for="name" class="font-color">Name</label>
+                                        <input [(ngModel)]="usuario.nome" class="form-control" type="text" name="name"
+                                            id="name" placeholder="Enter your name">
+                                    </div>
+                                    <!--
+                                    <div class="form-group">
+                                        <label for="userType">User type</label>
+                                        <select (change)="tipoUser($event)" class="form-control" name="userType"
+                                            id="userType">
+                                            <option>Select user type</option>
+                                            <option value="commun">Common</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                    </div>
+                                    -->
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-shadow mr-4 btn-color"
+                                            (click)="update()">Update</button>
+                                        <button type="submit" class="btn btn-shadow btn-danger"
+                                            routerLink="/inicio">Cancel</button>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        <!--/Edit Profile-->
+
+                        <!--Edit Profile Picture-->
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                            aria-labelledby="v-pills-profile-tab">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-10">
+
+                                    <div class="d-flex justify-content-center">
+                                        <img src="{{usuario.foto}}" alt="Imagem perfil" width="200px" height="200px" class="foto-perfil rounded-circle m-3">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="foto" class="font-color">Picture link</label>
+                                        <input [(ngModel)]="usuario.foto" class="form-control" type="text" name="foto"
+                                            id="foto" placeholder="Enter your picture link">
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-shadow mr-4 btn-color"
+                                            (click)="update()">Update</button>
+                                        <button type="submit" class="btn btn-shadow btn-danger"
+                                            routerLink="/inicio">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/Edit Profile Picture-->
+
+                        <!--Change Password-->
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-10">
+
+                                    <div class="form-group">
+                                        <label for="name" class="font-color">New password</label>
+                                        <input [(ngModel)]="usuario.senha" class="form-control" type="password"
+                                            name="name" id="name" placeholder="Enter your name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name" class="font-color">Confirm password</label>
+                                        <input (input)="confirmSenha($event)" class="form-control" type="password"
+                                            name="name" id="name" placeholder="Enter your name">
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-shadow mr-4 btn-color"
+                                            (click)="update()">Update</button>
+                                        <button type="submit" class="btn btn-shadow btn-danger"
+                                            routerLink="/inicio">Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/Change Password-->
+
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

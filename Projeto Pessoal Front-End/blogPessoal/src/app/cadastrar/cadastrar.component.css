@@ -1,14 +1,17 @@
 #img-bg {
     background-image: url("../../assets/img/xPOZq9.jpg");
-    min-height: 935px;
-    transform: rotateY(180deg);
+    /*transform: rotateY(180deg);*/
     background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .bg-enter {
+    width: 600px;
+    height: 650px;
+    border-radius: 150px 20px 150px 20px;
     background-color: #0f4c5c;
+    box-shadow: 0px 8px 10px #ffe75c;
 }
 
 .btn-color {

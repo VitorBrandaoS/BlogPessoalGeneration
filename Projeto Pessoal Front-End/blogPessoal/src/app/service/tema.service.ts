@@ -9,6 +9,8 @@ import { Tema } from '../model/Tema';
 })
 export class TemaService {
 
+  url= "https://blog-pessoal-deploy.herokuapp.com"
+
   constructor(private http: HttpClient) { 
 
   }
@@ -18,28 +20,28 @@ export class TemaService {
   }
 
   getAllTema(): Observable<Tema[]>{
-    return this.http.get<Tema[]>("https://blog-pessoal-deploy.herokuapp.com/tema", this.token)
+    return this.http.get<Tema[]>(`${this.url}/tema`, this.token)
 
   }
 
   getByIdTema(id: number): Observable<Tema> {
-    return this.http.get<Tema>(`https://blog-pessoal-deploy.herokuapp.com/tema/${id}`, this.token)
+    return this.http.get<Tema>(`${this.url}/tema/${id}`, this.token)
   }
 
   getByNomeTema(nome: string): Observable<Tema[]> {
-    return this.http.get<Tema[]>(`https://blog-pessoal-deploy.herokuapp.com/tema/nome/${nome}`, this.token)
+    return this.http.get<Tema[]>(`${this.url}/tema/nome/${nome}`, this.token)
   }
 
   postTema(tema: Tema): Observable<Tema>{
-    return this.http.post<Tema>("https://blog-pessoal-deploy.herokuapp.com/tema", tema, this.token)
+    return this.http.post<Tema>(`${this.url}/tema`, tema, this.token)
   }
 
   putTema(tema: Tema): Observable<Tema> {
-    return this.http.put<Tema>("https://blog-pessoal-deploy.herokuapp.com/tema", tema, this.token)
+    return this.http.put<Tema>(`${this.url}/tema`, tema, this.token)
   }
 
   deleteTema(id: number) {
-    return this.http.delete(`https://blog-pessoal-deploy.herokuapp.com/tema/${id}`, this.token)
+    return this.http.delete(`${this.url}/tema/${id}`, this.token)
   }
 
 

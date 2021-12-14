@@ -1,0 +1,17 @@
+.btn-return{
+    left: 100px;
+    position: relative;
+    width: 100px !important;
+}
+
+.bg-img{
+    background-image: url("../../assets/img/circles.jpg");
+}
+
+.btn-color {
+    background-color: #fca311;
+}
+
+.font-color {
+    color: white !important;
+}

@@ -1,6 +1,6 @@
+
 #img-bg {
     background-image: url("../../assets/img/workspace.jpg");
-    min-height: 935px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,7 +15,11 @@ select {
 }
 
 .bg-enter {
+    width: 550px;
+    height: 580px;
+    border-radius: 150px 20px 150px 20px;
     background-color: #0f4c5c;
+    box-shadow: 0px 8px 10px #d3ba6b;
 }
 
 .btn-color {
@@ -37,4 +41,20 @@ a {
 
 .btn-shadow {
     box-shadow: 0px 5px 10px rgb(36, 36, 36);
+}
+
+.estilo-entrar{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-radius: 100px 100px 100px 100px;
+}
+
+.hr-login{
+    border-color: rgb(172, 172, 172);
+}
+
+.logo{
+    width: 210px;
 }

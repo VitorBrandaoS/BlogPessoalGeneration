@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
@@ -17,6 +18,7 @@ import { TemaService } from '../service/tema.service';
 export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
+  postagemAtual: Postagem = new Postagem()
   listaPostagens: Postagem[]
   tituloPost: string
 
@@ -24,9 +26,8 @@ export class InicioComponent implements OnInit {
   listaTemas: Tema[]
   idTema: number
   nomeTema: string
-
-  usuario: Usuario = new Usuario
   idUsuario = environment.id
+  usuario: Usuario = new Usuario()
 
   key = "data"
   reverse = true
@@ -47,7 +48,7 @@ export class InicioComponent implements OnInit {
       //alert("Your session has expired! Please log in again.")
       this.router.navigate(["/entrar"])
     }
-
+    this.findByIdUser()
     this.getAllTemas()
     this.getAllPostagens()
   }
@@ -70,6 +71,12 @@ export class InicioComponent implements OnInit {
     })
   }
 
+  getByIdPostagens(id: number){
+    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem) => {
+      this.postagemAtual = resp
+    })
+  }
+
   findByIdUser(){
     this.authService.getByIdUser(this.idUsuario).subscribe((resp: Usuario) => {
       this.usuario = resp
@@ -79,10 +86,9 @@ export class InicioComponent implements OnInit {
   publicar(){
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
-    this.usuario.id = this.idUsuario
+    this.usuario.id = environment.id
     this.postagem.usuario = this.usuario
     
-
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
       this.alertas.showAlertSuccess("Post Successfully!")
@@ -104,6 +110,19 @@ export class InicioComponent implements OnInit {
     
   } 
 
+  findByTituloPostagemUser(){
+
+    if(this.tituloPost == ""){
+      this.getAllPostagens()
+      this.findByIdUser()
+    }else{
+      this.postagemService.getByTituloPostagem(this.tituloPost).subscribe((resp: Postagem[]) =>{
+        this.usuario.postagem = resp
+      })
+    }
+    
+  } 
+
   findByNomeTema(){
     if(this.nomeTema == ""){
       this.getAllTemas()
@@ -114,5 +133,23 @@ export class InicioComponent implements OnInit {
     }
   }
 
+  reactionFunction(id: number, value: string){
+    this.postagemService.reaction(id, value, environment.id).subscribe((resp: Postagem) =>{
+      this.postagem = resp
+      this.getAllPostagens()
+    })
+  }
+/*
+  verify(id: number){
+    this.getByIdPostagens(id)
+    let valor = this.postagemAtual.listaCurtidaUsuario.includes(this.usuario)
+    return valor
+  }
 
+  verifyLike(idPost: number){
+    this.postagemService.verifyLike(idPost, this.idUsuario).subscribe(resp =>{
+      return resp
+    })
+  }
+*/
 }

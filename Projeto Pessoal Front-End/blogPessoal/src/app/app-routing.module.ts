@@ -6,6 +6,9 @@ import { TemaDeleteComponent } from './delete/tema-delete/tema-delete.component'
 import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
 
 import { TemaEditComponent } from './edit/tema-edit/tema-edit.component';
+import { UserEditFotoComponent } from './edit/user-edit-foto/user-edit-foto.component';
+import { UserEditSenhaComponent } from './edit/user-edit-senha/user-edit-senha.component';
+import { UserEditUsernameComponent } from './edit/user-edit-username/user-edit-username.component';
 import { UserEditComponent } from './edit/user-edit/user-edit.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -25,7 +28,10 @@ const routes: Routes = [
   {path: "postagem-edit/:id", component: PostagemEditComponent},
   {path: "postagem-delete/:id", component: PostagemDeleteComponent},
 
-  {path: "user-edit/:id", component: UserEditComponent}
+  {path: "user-edit/:id", component: UserEditComponent},
+  {path: "user-edit-foto/:id", component: UserEditFotoComponent},
+  {path: "user-edit-senha/:id", component: UserEditSenhaComponent},
+  {path: "user-edit-username/:id", component: UserEditUsernameComponent},
 
 ];
 

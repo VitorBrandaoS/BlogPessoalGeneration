@@ -2,3 +2,51 @@
     background-color: #fca311;
     color: white;
 }
+
+.foto-perfil {
+    object-fit: cover;
+}
+
+.edit-container {
+    height: 400px;
+}
+
+.bottom-color{
+    height: 50px;
+    width: 250px;
+    border-radius: 10px;
+    background-color: #fca311;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.bottom-color:focus {
+    background-color: #aa7114 !important;
+}
+
+.font-color {
+    color: white !important;
+}
+
+.font-color:focus {
+    color: white !important;
+}
+
+.background-transparente{
+    height: 400px;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-img{
+    background-image: url("../../../assets/img/circles.jpg");
+}
+
+.btn-return{
+    top: 100px;
+    position: relative;
+    width: 100px !important;
+}

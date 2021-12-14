@@ -10,6 +10,8 @@ import { Usuario } from '../model/Usuario';
 })
 export class AuthService {
 
+  url= "https://blog-pessoal-deploy.herokuapp.com"
+
   constructor(private http: HttpClient) { }
 
   token = {
@@ -17,20 +19,32 @@ export class AuthService {
   }
 
   entrar(userLogin: UserLogin): Observable<UserLogin> {
-    return this.http.post<UserLogin>("https://blog-pessoal-deploy.herokuapp.com/usuarios/logar", userLogin)
+    return this.http.post<UserLogin>(`${this.url}/usuarios/logar`, userLogin)
   }
 
   cadastrar(usuario: Usuario): Observable<Usuario> {
 
-    return this.http.post<Usuario>("https://blog-pessoal-deploy.herokuapp.com/usuarios/cadastrar", usuario)
+    return this.http.post<Usuario>(`${this.url}/usuarios/cadastrar`, usuario)
   }
 
   atualizar(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>("https://blog-pessoal-deploy.herokuapp.com/usuarios", usuario, this.token)
+    return this.http.put<Usuario>(`${this.url}/usuarios/update`, usuario, this.token)
+  }
+
+  atualizarFoto(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.url}/usuarios/update/foto`, usuario, this.token)
+  }
+
+  atualizarSenha(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.url}/usuarios/update/senha`, usuario, this.token)
+  }
+
+  atualizarUsername(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.url}/usuarios/update/username`, usuario, this.token)
   }
 
   getByIdUser(id: number): Observable<Usuario>{
-    return this.http.get<Usuario>(`https://blog-pessoal-deploy.herokuapp.com/usuarios/${id}`, this.token)
+    return this.http.get<Usuario>(`${this.url}/usuarios/${id}`, this.token)
   }
 
   logado(){

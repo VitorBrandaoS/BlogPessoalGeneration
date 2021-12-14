@@ -6,17 +6,16 @@ import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-user-edit',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css']
+  selector: 'app-user-edit-foto',
+  templateUrl: './user-edit-foto.component.html',
+  styleUrls: ['./user-edit-foto.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class UserEditFotoComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
   idUser: number
   confirmarSenha: string
   tipoUsuario: string
-  altura: number
 
   constructor(
     private authService: AuthService,
@@ -27,7 +26,6 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0, 0)
-    this.altura = window.innerHeight - 279
 
     if (environment.token == "") {
       //alert("Your session has expired! Please log in again.")
@@ -50,8 +48,7 @@ export class UserEditComponent implements OnInit {
   }
 
   update() {
-    this.usuario.tipo = this.tipoUsuario
-    this.authService.atualizar(this.usuario).subscribe((resp: Usuario) => {
+    this.authService.atualizarFoto(this.usuario).subscribe((resp: Usuario) => {
       this.usuario = resp
       this.alertas.showAlertSuccess("User updated successfully! Please log in again...")
       environment.token = ""
@@ -68,22 +65,4 @@ export class UserEditComponent implements OnInit {
       this.usuario = resp
     })
   }
-
-  /*if (this.usuario.senha != this.confirmarSenha) {
-      this.alertas.showAlertDanger("Passwords are incorrect!")
-    } else {
-      this.authService.atualizar(this.usuario).subscribe((resp: Usuario) => {
-        this.usuario = resp
-        this.alertas.showAlertSuccess("User updated successfully! Please log in again...")
-        environment.token = ""
-        environment.nome = ""
-        environment.foto = ""
-        environment.id = 0
-        environment.tipo = ""
-        this.router.navigate(["/entrar"])
-      })
-    }*/
-
- 
-
 }

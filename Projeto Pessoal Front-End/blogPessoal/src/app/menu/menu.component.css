@@ -9,3 +9,44 @@ a{
 .foto-perfil {
     object-fit: cover;
 }
+
+#menu{
+    border-radius: 0px 0px 60px 60px;
+    box-shadow: 0px 5px 10px #585858;
+}
+
+.logo{
+    width: 100px;
+    margin-right: 300px !important;
+}
+
+.engrenagem #iconEngine{
+    opacity: 0%;
+    transition: 0.5s;
+}
+
+.engrenagem:hover #iconEngine{
+    opacity: 100%;
+}
+.engrenagem:hover img{
+    filter: saturate(0%);
+}
+
+#config{
+    position: absolute;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.engr{
+    height: 50px !important;
+    left: 16px;
+    top: 14px;
+
+}
+
+.exit{
+    margin-left: 250px !important;
+}
